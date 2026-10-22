@@ -26,14 +26,14 @@ Save and preview are easy to reach. Autosave/error/recovery behavior remains req
 Templates initialize content structure. Saving a personal template excludes the recipe's text, ingredient quantities and photographs.
 
 ## Visual language
-Warm ivory surfaces, sage primary actions, warm dark text and restrained food imagery.
+Bright light-mode surfaces: near-white #FCFDF9, mint selection #C9EDDA, dark green text #243F38, pastel mint/apricot/blush image placeholders. This concept intentionally stays light regardless of host appearance.
 Readable typography, rounded surfaces, generous spacing, and consistent line icons.
 Real photos are optional; illustration placeholders keep an incomplete collection attractive.
 Final branding assets, color contrast and system appearance require verification on devices.
 
 ## Interactive concept coverage
 The accompanying in-conversation concept explores one mobile screen at a time:
-- English-only Recipes page with category filtering and text search; separate Tags directory with tag-specific recipe lists.
+- English-only Recipes page with category filtering, text search and a compact secondary tag row.
 - Cinnamon-roll, pumpkin soup, apple crumble and apéro examples with illustrative notes.
 - Editing a note, swapping two block groups and returning to preview.
 - Template entries open an example editor; editing supports toggling existing categories and tags.
@@ -47,7 +47,7 @@ Then create the framework/editor technical spike, keeping these screens as the e
 
 ## Organization rules
 English is the interface language. Categories and tags are separate optional many-to-many fields. Starter categories: Baking, Desserts, Everyday Cooking, Apéro. Starter tag examples: Pumpkin, Apple, Cinnamon. Users can create, rename and delete their own categories and tags in the planned application; those management controls are not yet in the preview.
-Recipes combines category selection and search. Tags is an independent navigation destination: Tags → Pumpkin/Apple/etc. → associated recipes. It does not inherit Recipes filters. All Recipes includes uncategorized recipes. Clear filters on Recipes clears its category and search. Templates describe structure and do not assign categories automatically. No recipe verification badges, filters, fields or outcome requirements exist.
+Recipes combines category selection, selected tags and search. Tags is a compact inline secondary row within Recipes. All Recipes includes uncategorized recipes. Clear filters on Recipes clears its category and search. Templates describe structure and do not assign categories automatically. No recipe verification badges, filters, fields or outcome requirements exist.
 
 ## Navigation refinement — 2026-10-22
-Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
+Follow the founder's screenshot: bottom navigation is Recipes, + Add in the center, Templates. Keep categories on Recipes; Tags is a smaller secondary row with the label and tag controls on one line. On production screens with many tags, use an accessible overflow control rather than shrinking indefinitely. Tag/category assignment remains available in editing. The visual direction is fresh and bright with a fixed light concept palette.
