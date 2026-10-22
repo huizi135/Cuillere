@@ -14,7 +14,7 @@ Proposed responsibilities:
 
 ## Conceptual model
 The interface language is English. User-authored recipe content is unrestricted. There is no recipe verification/approval field.
-Category and Tag are separate user-managed entities with stable IDs. Renaming preserves references; deleting an organization label must not delete recipes. Category and tag deletion require an undo path. Normalize whitespace and case for duplicate-name detection while preserving display spelling and accents. All Recipes includes uncategorized content. Apply category AND selected tags; multiple selected tags use AND in the initial design. Search combines with these filters.
+Category and Tag are separate user-managed entities with stable IDs. Renaming preserves references; deleting an organization label must not delete recipes. Category and tag deletion require an undo path. Normalize whitespace and case for duplicate-name detection while preserving display spelling and accents. All Recipes includes uncategorized content. Recipes combines category selection and text search. Tags has a separate directory route and tag-specific recipe list; entering it does not inherit hidden Recipes filters. Returning from a recipe opened through Tags restores that tag list.
 Recipe has optional many-to-many category and tag references, metadata, an ordered block list, ingredient records, optional notes and optional parent recipe ID.
 Each block has a stable ID, type, schema version, position, visibility and type-specific content.
 Templates contain structural defaults, not copies of recipe text or photos.
@@ -70,3 +70,6 @@ Brand naming availability and trademarks have not been checked.
 
 ## Portfolio evidence
 Keep concise architecture decisions, a real product discovery record, accessible UI examples, test evidence for domain rules, and a reproducible build guide as implementation progresses.
+
+## Navigation refinement — 2026-10-22
+Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
