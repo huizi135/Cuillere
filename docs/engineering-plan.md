@@ -5,7 +5,7 @@ Status: proposed boundaries; framework selection pending · 2026-10-22
 Start with one cross-platform application and clear internal modules. Keep business rules independent of the UI framework and nutrition vendor. No microservices or backend required for the initial local beta.
 
 Proposed responsibilities:
-- Recipes: content, verification marker, variants and notes.
+- Recipes: content, categories, tags, variants and personal notes.
 - Editor/Templates: block structure, template instantiation and layout constraints.
 - Ingredients/Units: food references, quantities and explicit conversion rules.
 - Nutrition: source adapters, manual label entries, estimates and completeness.
@@ -13,7 +13,9 @@ Proposed responsibilities:
 - Storage/Backup: persistence, schema migration, portable export and restore.
 
 ## Conceptual model
-Recipe has metadata, an ordered block list, ingredient records, optional notes and optional parent recipe ID.
+The interface language is English. User-authored recipe content is unrestricted. There is no recipe verification/approval field.
+Category and Tag are separate user-managed entities with stable IDs. Renaming preserves references; deleting an organization label must not delete recipes. Category and tag deletion require an undo path. Normalize whitespace and case for duplicate-name detection while preserving display spelling and accents. All Recipes includes uncategorized content. Apply category AND selected tags; multiple selected tags use AND in the initial design. Search combines with these filters.
+Recipe has optional many-to-many category and tag references, metadata, an ordered block list, ingredient records, optional notes and optional parent recipe ID.
 Each block has a stable ID, type, schema version, position, visibility and type-specific content.
 Templates contain structural defaults, not copies of recipe text or photos.
 Ingredient records preserve display text separately from computational quantity, unit, food match and source basis.
@@ -51,7 +53,7 @@ Verify current official documentation and build a small editor spike before choo
 1. Product prototype: validate core flow and customization with varied cooking habits.
 2. Technical spike: exercise block reorder, image attachment, local save/reload and accessibility on both target platforms.
 3. Vertical slice: create, save, browse and edit one real recipe offline.
-4. Domain features: templates, verification, search, notes, scaling and variants.
+4. Domain features: templates, categories, tags, search, personal notes, scaling and variants.
 5. Nutrition: choose a licensed source and prove units, incomplete-data behavior and manual entries.
 6. Private beta: verify backup/restore, migrations, device behavior and usability.
 7. Store release: complete release builds, privacy disclosures, support/contact paths, accessibility review and store assets; verify applicable current platform requirements.
@@ -63,7 +65,7 @@ Prioritize unit/scaling edge cases, nutrition incompleteness, template independe
 Documentation-only changes do not require an application test suite.
 
 ## Open decisions
-Framework; nutrition provider and data licensing; supported initial languages; minimum OS versions; media storage strategy; backup format; whether sync is needed before paid launch; monetization.
+Framework; nutrition provider and data licensing; minimum OS versions; media storage strategy; backup format; whether sync is needed before paid launch; monetization.
 Brand naming availability and trademarks have not been checked.
 
 ## Portfolio evidence
