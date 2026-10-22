@@ -2,11 +2,11 @@
 Status: design proposal · 2026-10-22
 
 ## Navigation
-Two primary destinations: Collection and Templates. A prominent Add action opens recipe creation. Settings includes units, accessibility preferences, backup/restore and future account features.
+Primary destinations: Recipes, Tags and Templates. Tags is a separate directory beside Recipes: Tags → tag name → associated recipes. It is not an inline secondary filter row on Recipes. A prominent Add action opens recipe creation. Settings includes units, accessibility preferences, backup/restore and future account features.
 Avoid empty top-level tabs for features that have not shipped.
 
 ## Collection
-Photo-led cards with title, categories and optional compact duration/servings. Search stays easy to reach. Offer All Recipes and customizable categories such as Baking, Desserts, Everyday Cooking and Apéro. Tags such as Pumpkin and Apple provide a second filter layer. Categories may overlap. Combine category and tag filters, display active filters and offer Clear filters.
+Photo-led cards with title, categories and optional compact duration/servings. Search stays easy to reach. Offer All Recipes and customizable categories such as Baking, Desserts, Everyday Cooking and Apéro. Categories may overlap. Recipes shows category filters and search. Tags such as Pumpkin and Apple live in the separate Tags directory; selecting one opens its associated recipe list.
 Empty state: a short explanation and Add recipe action. Missing photos use quiet illustrated placeholders; taking a photo is never required.
 
 ## Create and edit
@@ -60,3 +60,6 @@ This validates that the baking example does not dictate the entire product.
 Demonstrate collection → create → rearrange → save → read → edit.
 Include empty, missing-photo, incomplete-nutrition and failed-save states.
 Test with both reference recipes and with someone using a different recording style.
+
+## Navigation refinement — 2026-10-22
+Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
