@@ -45,7 +45,7 @@ There are no verified/unverified markers, recipe approval states or quality rank
 Categories are optional, user-managed collections: starter suggestions include Baking, Desserts, Everyday Cooking and Apéro. A recipe can belong to more than one category, because baking and desserts overlap.
 Tags provide a separate, many-to-many layer: Pumpkin, Apple, Cinnamon, Quick or Autumn. Users can create, rename and remove categories and tags. Nothing is assigned automatically without confirmation.
 Personal notes are central: substitutions, discoveries, preferences and little touches make the recipe one's own. Use the simple English module label My Notes; never require a success/failure verdict.
-Recipes and Tags are separate navigation entries. Recipes supports category browsing and search; Tags lists labels and recipe counts, then opens the associated recipes. There is no tag-filter row on Recipes. Recipes without a category or tags remain in All Recipes.
+Recipes supports category browsing and search. A compact secondary row labeled Tags contains small inline tag controls. Selecting tags filters recipes together with category and search; multiple selected tags use AND. Recipes without a category or tags remain in All Recipes.
 
 ## Outside initial scope
 Social feeds, public recipe discovery, meal planning, shopping lists, AI-generated recipes, detailed cooking-session tracking, arbitrary free-position canvases, plugin marketplaces and full dietary tracking.
@@ -65,4 +65,4 @@ Record completion, friction and qualitative feedback. Establish numeric targets 
 Validate willingness to pay after users repeatedly save and reuse recipes. One-time purchase, subscription and a free core with paid conveniences remain options. Do not select pricing or gate basic data export before this research.
 
 ## Navigation refinement — 2026-10-22
-Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
+Follow the founder's screenshot: bottom navigation is Recipes, + Add in the center, Templates. Keep categories on Recipes; Tags is a smaller secondary row with the label and tag controls on one line. On production screens with many tags, use an accessible overflow control rather than shrinking indefinitely. Tag/category assignment remains available in editing. The visual direction is fresh and bright with a fixed light concept palette.
