@@ -2,7 +2,7 @@
 Status: proposed interaction design · 2026-10-22
 
 ## Collection
-Hierarchy: brand → collection heading/Add → search → category filters → tag filters → two-column recipe cards.
+Hierarchy: brand → collection heading/Add → search → category filters → two-column recipe cards.
 Cards show image or illustrated placeholder, title, optional categories and tags. On narrow screens or large system text, reflow to one column.
 Default to All until the user chooses a filter, then remember that preference.
 Search must be a real text field in implementation; the concept preview uses a visual placeholder.
@@ -33,7 +33,7 @@ Final branding assets, color contrast and system appearance require verification
 
 ## Interactive concept coverage
 The accompanying in-conversation concept explores one mobile screen at a time:
-- English-only collection with category and tag filtering, text search and recipe navigation.
+- English-only Recipes page with category filtering and text search; separate Tags directory with tag-specific recipe lists.
 - Cinnamon-roll, pumpkin soup, apple crumble and apéro examples with illustrative notes.
 - Editing a note, swapping two block groups and returning to preview.
 - Template entries open an example editor; editing supports toggling existing categories and tags.
@@ -47,4 +47,7 @@ Then create the framework/editor technical spike, keeping these screens as the e
 
 ## Organization rules
 English is the interface language. Categories and tags are separate optional many-to-many fields. Starter categories: Baking, Desserts, Everyday Cooking, Apéro. Starter tag examples: Pumpkin, Apple, Cinnamon. Users can create, rename and delete their own categories and tags in the planned application; those management controls are not yet in the preview.
-Category filters combine with all selected tags and search using AND. All Recipes includes uncategorized recipes. Clear filters also clears search. Templates describe structure and do not assign categories automatically. No recipe verification badges, filters, fields or outcome requirements exist.
+Recipes combines category selection and search. Tags is an independent navigation destination: Tags → Pumpkin/Apple/etc. → associated recipes. It does not inherit Recipes filters. All Recipes includes uncategorized recipes. Clear filters on Recipes clears its category and search. Templates describe structure and do not assign categories automatically. No recipe verification badges, filters, fields or outcome requirements exist.
+
+## Navigation refinement — 2026-10-22
+Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
