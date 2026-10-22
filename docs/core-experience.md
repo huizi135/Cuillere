@@ -2,11 +2,11 @@
 Status: design proposal · 2026-10-22
 
 ## Navigation
-Primary destinations: Recipes, Tags and Templates. Tags is a separate directory beside Recipes: Tags → tag name → associated recipes. It is not an inline secondary filter row on Recipes. A prominent Add action opens recipe creation. Settings includes units, accessibility preferences, backup/restore and future account features.
+Bottom navigation: Recipes, + Add (center), Templates. Recipes contains category controls and a compact secondary Tags row. A prominent Add action opens recipe creation. Settings includes units, accessibility preferences, backup/restore and future account features.
 Avoid empty top-level tabs for features that have not shipped.
 
 ## Collection
-Photo-led cards with title, categories and optional compact duration/servings. Search stays easy to reach. Offer All Recipes and customizable categories such as Baking, Desserts, Everyday Cooking and Apéro. Categories may overlap. Recipes shows category filters and search. Tags such as Pumpkin and Apple live in the separate Tags directory; selecting one opens its associated recipe list.
+Photo-led cards with title, categories and optional compact duration/servings. Search stays easy to reach. Offer All Recipes and customizable categories such as Baking, Desserts, Everyday Cooking and Apéro. Categories may overlap. Recipes shows category filters and search. A secondary inline row labeled Tags contains compact Pumpkin, Apple and Cinnamon controls; selected tags narrow results.
 Empty state: a short explanation and Add recipe action. Missing photos use quiet illustrated placeholders; taking a photo is never required.
 
 ## Create and edit
@@ -40,7 +40,7 @@ My Notes is a prominent optional module for personal discoveries, adjustments an
 Edit the current recipe directly. Add a short dated note if useful. Duplicate as a variant for a lasting alternative. Keep a relationship to the original without exposing a complex revision timeline.
 
 ## Visual direction
-Warm, calm and uncluttered. Proposed palette: warm ivory, dark warm text, sage accents and a restrained apricot highlight. Final colors require contrast checks.
+Warm, calm and uncluttered. Proposed palette: bright near-white, fresh mint accents, dark green text and soft apricot/blush imagery. The current concept uses a fixed light appearance. Final colors require contrast checks.
 Use real food photography, generous spacing and a consistent rounded line-icon family. Spoon imagery is a brand exploration, not a completed logo.
 Do not encode errors or selected filters through color alone. Support system text scaling, screen readers and adequately sized touch targets. Labels and reading order must survive block rearrangement.
 The app interface is entirely English. Preserve user-authored recipe content in any language; allow future localization without enabling other interface languages at launch.
@@ -62,4 +62,4 @@ Include empty, missing-photo, incomplete-nutrition and failed-save states.
 Test with both reference recipes and with someone using a different recording style.
 
 ## Navigation refinement — 2026-10-22
-Recipes and Tags are separate destinations. Categories remain within Recipes; Tags is an index with a recipe count per label and a child recipe list. Keep tag assignment in the editor and display tags in recipe details. Adding a recipe remains an action within Recipes; templates remain structure presets. Category and tag management are still planned features, not fully implemented in the concept.
+Follow the founder's screenshot: bottom navigation is Recipes, + Add in the center, Templates. Keep categories on Recipes; Tags is a smaller secondary row with the label and tag controls on one line. On production screens with many tags, use an accessible overflow control rather than shrinking indefinitely. Tag/category assignment remains available in editing. The visual direction is fresh and bright with a fixed light concept palette.
