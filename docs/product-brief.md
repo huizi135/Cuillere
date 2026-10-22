@@ -4,12 +4,12 @@ Status: initial proposal · 2026-10-22
 ## Vision
 Cuillère — Recipe your way.
 
-A private recipe collection that lets people preserve trusted recipes in a format that fits their cooking habits. The product should feel light and approachable while supporting structured ingredients and useful nutrition estimates.
+A private recipe collection that lets people collect and adapt recipes in a format that fits their cooking habits. The product should feel light and approachable while supporting structured ingredients and useful nutrition estimates.
 
 ## Primary user and jobs
 Initial audience hypothesis: home cooks who adapt recipes and want a dependable personal collection. Start with the founder's real recipes, then validate with other cooks.
 - Save a recipe without completing a long form.
-- Find a trusted recipe and understand it quickly in the kitchen.
+- Find a personal recipe and understand it quickly in the kitchen.
 - Group ingredients and instructions to fit the dish.
 - Make a small correction or leave a useful note.
 - Estimate nutrition without hiding uncertainty.
@@ -26,7 +26,7 @@ Initial audience hypothesis: home cooks who adapt recipes and want a dependable 
 ## First public release scope
 | Capability | Acceptance outcome |
 | --- | --- |
-| Collection | Browse photo cards; search names and ingredients; filter tags and verified recipes. |
+| Collection | Browse photo cards; search names and ingredients; filter by user-defined categories and tags. |
 | Recipe editing | Create, edit, duplicate, delete and restore a recently deleted recipe. A title is enough to save a draft. |
 | Blocks | Add, reorder, hide and remove ingredient groups, instruction groups, images and notes. Metadata and nutrition have controlled placement options. |
 | Templates | Start with Everyday, Baking or Minimal; save the current structure as a personal template. Templates copy structure, not personal recipe contents. |
@@ -39,9 +39,13 @@ Initial audience hypothesis: home cooks who adapt recipes and want a dependable 
 
 Nutrition lookup may require connectivity; previously saved nutrition data remains available offline. Cross-device sync is a later milestone, not a requirement for the first local beta.
 
-## Verification
-Verification is a user-controlled marker, not an automated quality judgement.
-A recipe can be a draft, an unverified saved recipe, or a verified recipe. Verified recipes receive prominence; other saved recipes remain easy to access.
+## Organization and personal expression
+The app interface is entirely English; conversations with the founder can remain Chinese. Recipe content is user-authored and is not language-restricted.
+There are no verified/unverified markers, recipe approval states or quality rankings. Saving is independent of any judgement about a recipe's outcome.
+Categories are optional, user-managed collections: starter suggestions include Baking, Desserts, Everyday Cooking and Apéro. A recipe can belong to more than one category, because baking and desserts overlap.
+Tags provide a separate, many-to-many layer: Pumpkin, Apple, Cinnamon, Quick or Autumn. Users can create, rename and remove categories and tags. Nothing is assigned automatically without confirmation.
+Personal notes are central: substitutions, discoveries, preferences and little touches make the recipe one's own. Use the simple English module label My Notes; never require a success/failure verdict.
+Selecting a category and tags narrows results together. Initial tag filtering matches all selected tags; show active filters and offer Clear filters. Recipes without a category or tags remain in All Recipes.
 
 ## Outside initial scope
 Social feeds, public recipe discovery, meal planning, shopping lists, AI-generated recipes, detailed cooking-session tracking, arbitrary free-position canvases, plugin marketplaces and full dietary tracking.
