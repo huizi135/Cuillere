@@ -35,3 +35,6 @@ The add-step action displays only a + icon with accessible Add step label. Exist
 
 ## Compact single-container layout
 All steps share one mint Process container. Replace separate card surfaces with compact rows and subtle horizontal separators. In reading mode, ordinal, optional title and timing/temperature share a wrapping line; instructions follow underneath. No fixed internal scrolling or hidden steps. Editing remains inline in the same container, with the existing drag and optional media/condition controls. Preserve the + only add action. This supersedes the earlier spacious per-step card treatment.
+
+## Numbered inline presentation
+Use circular number badges followed directly by instruction text. Remove visible step titles, divider lines, grip marks and duration/temperature metadata from the compact reading presentation; retain existing data and optional edit controls. Keep one centered + inside Process even in reading mode; activating it inserts an empty step and enters editing. Bottom navigation's central Add action is icon-only + with an accessible Add recipe label. Avoid confusing the local step + with the global new-recipe + through placement and accessibility names. This supersedes the prior reading row of ordinal/title/conditions.
