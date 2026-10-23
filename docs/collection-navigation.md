@@ -16,3 +16,6 @@ Bottom Templates now opens three functional structural presets. Everyday inserts
 
 ## Verification and limits
 JavaScript syntax and existing nutrition/scaling arithmetic checks passed. Source and generated standalone preview are updated together. Full browser navigation, file selection, touch drag and accessibility verification remain pending. The UI is English; the local Windows guide remains Chinese.
+
+## Complete example page
+The existing Sunday cinnamon rolls example now includes Ingredients before Process, a personal Words block, a Photo placeholder with a working local picker, a Sketch with illustrative spiral strokes and an editable three-attempt Comparison. Reading mode shows aligned ingredient amount/unit/estimated-kcal columns and the shared persons/total summary. Quantities, timings, sketches, prose and comparison results are demonstration fixtures, not a tested recipe or the user's actual cooking history. No food photograph is fabricated: the photo block explicitly invites the user to add a moment. New pages and structural templates remain unfilled; these fixtures are only in the existing example.
