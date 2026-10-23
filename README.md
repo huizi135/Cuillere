@@ -20,6 +20,7 @@ Open `prototype/index.html` in a browser (internet access is needed for CDN icon
 [Windows setup guide (中文)](docs/local-prototype-guide-zh.md)
 
 ## Project documents
+- [Connected collection and navigation](docs/collection-navigation.md)
 - [Process step cards](docs/process-step-design.md)
 - [Clean start, compact summary, time and music](docs/clean-start-time-and-music.md)
 - [Automatic calories and persons scaling](docs/automatic-calories-and-portions.md)
