@@ -1,7 +1,7 @@
 # Cuillère
 **Recipe your way.**
 
-A personal recipe collection for Android and iOS: keep recipes worth making again, arrange them your way, and understand their nutrition.
+A personal kitchen creation notebook for Android and iOS: explore ingredients, create dishes, and collect recipes, ideas, life reflections and sketches your way.
 
 ## Product direction
 - Beautiful photo-led browsing, with useful text and accessible icons.
@@ -15,6 +15,7 @@ A personal recipe collection for Android and iOS: keep recipes worth making agai
 Cuillère is currently in product discovery. No app implementation, framework, nutrition provider, pricing, or launch date has been selected.
 
 ## Project documents
+- [Current direction: kitchen creation notebook](docs/kitchen-creation-notebook.md)
 - [Product brief and MVP](docs/product-brief.md)
 - [Screen specification](docs/screen-specification.md)
 - [Core experience and design direction](docs/core-experience.md)
