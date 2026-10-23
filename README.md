@@ -15,6 +15,7 @@ A personal kitchen creation notebook for Android and iOS: explore ingredients, c
 Cuillère is currently in product discovery. No app implementation, framework, nutrition provider, pricing, or launch date has been selected.
 
 ## Project documents
+- [Process step cards](docs/process-step-design.md)
 - [Clean start, compact summary, time and music](docs/clean-start-time-and-music.md)
 - [Automatic calories and persons scaling](docs/automatic-calories-and-portions.md)
 - [Comparison, direct manipulation and calculation basis](docs/comparison-and-direct-manipulation.md)
