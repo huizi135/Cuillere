@@ -62,7 +62,7 @@ Start-Process .\prototype\index.html
 
 ## 现在能体验什么
 
-打开后先显示填写完成的紧凑 Process 示例。点 Edit 可以编辑、添加内容模块；添加食材、调整人数、写文字、选择照片、画手绘和创建 Comparison。Recipe 与 Templates 的导航还没有接通完整应用流程。
+打开后先显示 My Recipes 首页。点示例作品进入阅读，再点 Edit 编辑；底部 Recipes 返回首页并在本次会话中保留内容。底部 + 创建空白作品；Templates 可以选择 Everyday、Baking、Minimal 三个起始结构。可以搜索、按分类/标签筛选，并在编辑页 Categories & tags 中整理分类和标签。个人模板保存及真实数据持久化尚未实现。
 
 ## 当前边界
 
