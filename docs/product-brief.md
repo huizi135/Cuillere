@@ -4,7 +4,7 @@ Status: initial proposal · 2026-10-22
 ## Vision
 Cuillère — Recipe your way.
 
-A private recipe collection that lets people collect and adapt recipes in a format that fits their cooking habits. The product should feel light and approachable while supporting structured ingredients and useful nutrition estimates.
+A personal kitchen creation notebook: ingredients are variables and dishes are creative works. A recipe page can combine ingredients, process, photographs, free writing, life reflections and sketches. See [the current direction](kitchen-creation-notebook.md) for the page model; it supersedes earlier form-centric examples. Nutrition remains an optional supporting feature.
 
 ## Primary user and jobs
 Initial audience hypothesis: home cooks who adapt recipes and want a dependable personal collection. Start with the founder's real recipes, then validate with other cooks.
