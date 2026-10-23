@@ -32,3 +32,6 @@ Validation: fragment read-back and JavaScript syntax checked; existing nutrition
 
 ## Filled-state refinement
 The add-step action displays only a + icon with accessible Add step label. Existing steps use ordinal numbers without a repeated visible Step prefix. Camera means add a step photo, clock means record duration, thermometer means record temperature. Reading mode shows only content and recorded conditions; editing tools are hidden. A separate illustrative cinnamon-roll example opens directly in filled reading mode with Process first, so users can inspect the finished presentation and switch to Edit. Its wording, times and temperature are example UI content, not a tested recipe. Empty cover/ingredients are hidden in this dedicated reading example, not removed from editing.
+
+## Compact single-container layout
+All steps share one mint Process container. Replace separate card surfaces with compact rows and subtle horizontal separators. In reading mode, ordinal, optional title and timing/temperature share a wrapping line; instructions follow underneath. No fixed internal scrolling or hidden steps. Editing remains inline in the same container, with the existing drag and optional media/condition controls. Preserve the + only add action. This supersedes the earlier spacious per-step card treatment.
