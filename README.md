@@ -12,7 +12,12 @@ A personal kitchen creation notebook for Android and iOS: explore ingredients, c
 - Ingredient-based nutrition estimates with visible data gaps.
 - Offline access and portable backups.
 
-Cuillère is currently in product discovery. No app implementation, framework, nutrition provider, pricing, or launch date has been selected.
+Cuillère is currently in product discovery. An interactive HTML design prototype is available in prototype/. No production mobile framework, nutrition provider, pricing, or launch date has been selected.
+
+## Run the design prototype
+Open `prototype/index.html` in a browser (internet access is needed for CDN icons). Edit `prototype/source.html`, then run `python tools/build_prototype.py` to rebuild. Changes are session-only; this is not a production app or persistent recipe store.
+
+[Windows setup guide (中文)](docs/local-prototype-guide-zh.md)
 
 ## Project documents
 - [Process step cards](docs/process-step-design.md)
