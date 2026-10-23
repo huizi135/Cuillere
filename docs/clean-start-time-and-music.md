@@ -19,3 +19,6 @@ The three sample song names and mood descriptors are illustrative UI content, no
 ## Concept and checks
 Implemented a clean initial page, conditional ingredient headings and an always-visible compact summary, compact top summary, inline duration editor, searchable sample song picker, selected-song state and removal. Existing comparison, text, photo, sketch, drag and scaling concepts remain available.
 Read back the fragment, checked JavaScript syntax and reran arithmetic/conversion/reversible-scaling tests from the prior version. No browser/device interaction verification is claimed. All changes remain session-only.
+
+## Caption and alignment refinement
+Remove the visible Words caption Thoughts, ideas, memories… and the Comparison caption Illustrative example · Choose what you compare. Keep accessible names for text inputs. In the Ingredients summary row, the compact persons stepper stays left and the total kcal sits at the far right. Keep both on the same row.
