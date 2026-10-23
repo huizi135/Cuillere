@@ -2,7 +2,7 @@
 Status: latest page refinement · 2026-10-23
 
 ## Empty page
-Begin with cover action, an empty title input, optional Choose a song row, one Ingredients module and Add to my page. Do not prefill personal reflections or comparison history. Keep ingredient shortcut icons and the + target visible. Hide Ingredient / Amount / Unit / kcal headings until the user adds a row; remove the headings again if there are no rows. Remove the instructional sentence Add only the ingredients you want to explore. Empty totals are hidden until an ingredient row exists. Other block types remain available from Add to my page.
+Begin with cover action, an empty title input, optional Choose a song row, one Ingredients module and Add to my page. Do not prefill personal reflections or comparison history. Keep ingredient shortcut icons and the + target visible. Hide Ingredient / Amount / Unit / kcal headings until the user adds a row; remove the headings again if there are no rows. Remove the instructional sentence Add only the ingredients you want to explore. The compact persons stepper and total energy always remain visible directly beneath the first Ingredients heading, including an empty page. Show — persons and — kcal until estimable data exists. Only ingredient table headings depend on whether rows exist. Other block types remain available from Add to my page.
 
 ## Compact summary
 Place one recipe-wide persons stepper and total kcal directly below the first Ingredients heading, above the shortcut shelf. Make the visible stepper smaller while retaining adequate hit targets in the native app. Its values cover all current ingredient modules; historical Comparison snapshots remain excluded. This replaces the previous placement after the last ingredient block.
@@ -17,5 +17,5 @@ Future data: optional provider, provider track ID, title, artist, artwork refere
 The three sample song names and mood descriptors are illustrative UI content, not an assertion of catalog availability. Selecting them changes local page state only. Future states should include disconnected/unavailable/removed-track behavior while retaining saved metadata.
 
 ## Concept and checks
-Implemented a clean initial page, conditional headings/totals, compact top summary, inline duration editor, searchable sample song picker, selected-song state and removal. Existing comparison, text, photo, sketch, drag and scaling concepts remain available.
+Implemented a clean initial page, conditional ingredient headings and an always-visible compact summary, compact top summary, inline duration editor, searchable sample song picker, selected-song state and removal. Existing comparison, text, photo, sketch, drag and scaling concepts remain available.
 Read back the fragment, checked JavaScript syntax and reran arithmetic/conversion/reversible-scaling tests from the prior version. No browser/device interaction verification is claimed. All changes remain session-only.
