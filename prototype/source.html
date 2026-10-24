@@ -415,15 +415,15 @@ weekStyle.textContent+=`
 `;
 const compactWeek=showWeek;showWeek=function(){compactWeek();showGroceryUndo();};
 // Submit explicitly before legacy capture handlers can rebuild the form.
-document.addEventListener('click',e=>{const b=e.target.closest('#kitchen-pages form[data-week-form] button');if(!b)return;const f=b.closest('form');e.preventDefault();e.stopImmediatePropagation();f.requestSubmit();},true);
+document.addEventListener('click',e=>{const b=e.target.closest('#kitchen-pages form[data-week-form] button');if(!b||b.type==='button')return;const f=b.closest('form');e.preventDefault();e.stopImmediatePropagation();f.requestSubmit();},true);
 function commitExpense(t){const id=Number(t.dataset.inlineExpense||t.dataset.inlineExpenseDate),x=weekly.expenses.find(x=>x.id===id);if(!x)return;if(t.dataset.inlineExpense){const value=t.value.trim().replace(',','.');if(!/^\d+(\.\d{1,2})?$/.test(value)||Number(value)<=0||!Number.isSafeInteger(Math.round(Number(value)*100))){t.setCustomValidity('Enter a positive amount with up to two decimals.');t.reportValidity();return;}t.setCustomValidity('');x.cents=Math.round(Number(value)*100);t.value=(x.cents/100).toFixed(2);}else if(t.value)x.date=t.value;const sum=weekly.expenses.filter(y=>y.date.slice(0,7)===spendMonth).reduce((a,y)=>a+y.cents,0);collection.querySelector('.month-total').textContent=money(sum);}
 root.addEventListener('focusout',e=>{if(e.target.matches('[data-inline-expense],[data-inline-expense-date]'))commitExpense(e.target);});
 root.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('[data-inline-expense]')){e.preventDefault();e.target.blur();}});
 root.addEventListener('pointerdown',e=>{const t=root.querySelector('[data-inline-expense]:focus');if(t&&t!==e.target)t.blur();},true);
 let simpleSwipe=null;
-root.addEventListener('pointerdown',e=>{const row=e.target.closest('[data-swipe-idea],[data-swipe-staple],[data-swipe-expense]');if(!row||e.button!==0||e.target.closest('button,input,textarea'))return;simpleSwipe={row,x:e.clientX,y:e.clientY,p:e.pointerId,dx:0};});
-root.addEventListener('pointermove',e=>{const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;if(Math.abs(dy)>15&&Math.abs(dy)>Math.abs(dx)){simpleSwipe=null;g.row.style.transform='';return;}if(dx>12&&dx>Math.abs(dy)*1.2){g.dx=dx;g.row.setPointerCapture(e.pointerId);g.row.style.transform='translateX('+Math.min(dx,130)+'px)';}});
-function endSimpleSwipe(e,cancel){const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;simpleSwipe=null;g.row.style.transform='';if(cancel||g.dx<65)return;const d=g.row.dataset;if(d.swipeIdea){const id=Number(d.swipeIdea);weekly.ideas.splice(weekly.ideas.findIndex(x=>x.id===id),1);}if(d.swipeStaple)weekly.staples=weekly.staples.filter(x=>x!==d.swipeStaple);if(d.swipeExpense)weekly.expenses=weekly.expenses.filter(x=>x.id!==Number(d.swipeExpense));showWeek();}
+root.addEventListener('pointerdown',e=>{const row=e.target.closest('[data-swipe-idea],[data-swipe-staple],[data-swipe-expense]');if(!row||e.button!==0||e.target.closest('input,textarea')||e.target.closest('button:not(.idea-title)'))return;simpleSwipe={row,x:e.clientX,y:e.clientY,p:e.pointerId,dx:0};});
+root.addEventListener('pointermove',e=>{const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;if(Math.abs(dy)>15&&Math.abs(dy)>Math.abs(dx)){simpleSwipe=null;g.row.style.transform='';return;}if(dx>12&&dx>Math.abs(dy)*1.2){g.dx=dx;g.row.setPointerCapture(e.pointerId);g.row.style.transform='translateX('+Math.min(dx,130)+'px)';g.moved=true;}});
+function endSimpleSwipe(e,cancel){const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;simpleSwipe=null;g.row.style.transform='';if(g.moved){swipeClickUntil=Date.now()+400;}if(cancel||g.dx<65)return;const d=g.row.dataset;if(d.swipeIdea){const id=Number(d.swipeIdea);weekly.ideas.splice(weekly.ideas.findIndex(x=>x.id===id),1);}if(d.swipeStaple)weekly.staples=weekly.staples.filter(x=>x!==d.swipeStaple);if(d.swipeExpense)weekly.expenses=weekly.expenses.filter(x=>x.id!==Number(d.swipeExpense));showWeek();}
 root.addEventListener('pointerup',e=>endSimpleSwipe(e,false));root.addEventListener('pointercancel',e=>endSimpleSwipe(e,true));
 weekStyle.textContent+=`
 #kitchen-pages .week-ideas summary{list-style:none;display:flex;width:44px;min-height:44px;box-sizing:border-box;align-items:center;padding:10px}
@@ -458,12 +458,35 @@ weekStyle.textContent+=`
 
 document.addEventListener('pointerdown',e=>{const summary=e.target.closest('#kitchen-pages [data-stamp-target]');if(!summary)return;const wasOpen=summary.closest('details').open;const input=collection.querySelector('[data-week-form="staple"] input:focus');if(input)commitQuickInput(input,false);const details=collection.querySelector('[data-stamp-target]')?.closest('details');if(details)details.open=!wasOpen;e.preventDefault();e.stopImmediatePropagation();},true);
 document.addEventListener('click',e=>{if(e.target.closest('#kitchen-pages [data-stamp-target]')){e.preventDefault();e.stopImmediatePropagation();if(e.detail===0){const details=collection.querySelector('[data-stamp-target]').closest('details');details.open=!details.open;}}},true);
+let swipeClickUntil=0;
+document.addEventListener('click',e=>{if(Date.now()<swipeClickUntil&&e.target.closest('#kitchen-pages .week-ideas')){e.preventDefault();e.stopImmediatePropagation();}},true);
+let expenseCalendarOpen=false,calendarMonth=dayKey(new Date()).slice(0,7),selectedExpenseDate=dayKey(new Date());
+function calendarDays(month){const first=dateAt(month+'-01'),offset=(first.getDay()+6)%7,count=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();return {offset,count};}
+function drawExpenseCalendar(){const panel=collection.querySelector('.week-money');if(!panel)return;panel.querySelector('.expense-calendar')?.remove();if(!expenseCalendarOpen)return;const {offset,count}=calendarDays(calendarMonth),spent=new Set(weekly.expenses.map(x=>x.date));const calendar=document.createElement('section');calendar.className='expense-calendar';calendar.setAttribute('aria-label','Shopping dates');calendar.innerHTML='<div class="row"><button type="button" data-cal-shift="-1" aria-label="Previous month">‹</button><span>'+dateAt(calendarMonth+'-01').toLocaleDateString('en-US',{month:'long',year:'numeric'})+'</span><button type="button" data-cal-shift="1" aria-label="Next month">›</button></div><div class="expense-days">'+['M','T','W','T','F','S','S'].map(x=>'<span class="day-label">'+x+'</span>').join('')+Array.from({length:offset},()=>'<span></span>').join('')+Array.from({length:count},(_,i)=>{const key=calendarMonth+'-'+String(i+1).padStart(2,'0');return '<button type="button" data-cal-day="'+key+'" aria-label="'+key+(spent.has(key)?', shopping recorded':'')+'" aria-pressed="'+(key===selectedExpenseDate)+'"><span>'+(i+1)+'</span>'+(spent.has(key)?'<span class="spending-dot" aria-hidden="true"></span>':'')+'</button>';}).join('')+'</div>';panel.querySelector('[data-week-form="expense"]').after(calendar);icons();}
+const calendarWeek=showWeek;showWeek=function(){calendarWeek();const form=collection.querySelector('[data-week-form="expense"]');if(!form)return;const date=form.querySelector('[name="date"]');date.type='hidden';date.value=selectedExpenseDate;const b=document.createElement('button');b.type='button';b.className='expense-date-picker';b.dataset.calOpen='true';b.setAttribute('aria-label','Choose shopping date');b.setAttribute('aria-expanded',String(expenseCalendarOpen));b.innerHTML='<span>'+dateAt(selectedExpenseDate).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</span><i data-lucide="calendar-days" aria-hidden="true"></i>';date.after(b);drawExpenseCalendar();icons();};
+document.addEventListener('click',e=>{const b=e.target.closest('#kitchen-pages [data-cal-open],#kitchen-pages [data-cal-shift],#kitchen-pages [data-cal-day]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(b.dataset.calOpen){expenseCalendarOpen=!expenseCalendarOpen;calendarMonth=selectedExpenseDate.slice(0,7);}if(b.dataset.calShift){const date=dateAt(calendarMonth+'-01');date.setMonth(date.getMonth()+Number(b.dataset.calShift));calendarMonth=dayKey(date).slice(0,7);}if(b.dataset.calDay){selectedExpenseDate=b.dataset.calDay;expenseCalendarOpen=false;const date=collection.querySelector('[data-week-form="expense"] [name="date"]');date.value=selectedExpenseDate;const picker=collection.querySelector('[data-cal-open]');picker.querySelector('span').textContent=dateAt(selectedExpenseDate).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}const picker=collection.querySelector('[data-cal-open]');picker?.setAttribute('aria-expanded',String(expenseCalendarOpen));drawExpenseCalendar();},true);
+weekStyle.textContent+=`
+#kitchen-pages .week-ideas .idea-entry{padding:0;margin:0;min-height:32px}
+#kitchen-pages .week-ideas .idea-line{min-height:32px;align-items:center}
+#kitchen-pages .week-ideas .idea-title{min-height:32px;padding:6px 3px;touch-action:pan-y}
+#kitchen-pages .week-ideas .idea-circle,#kitchen-pages .week-ideas .week-actions button{min-height:32px;height:32px}
+#kitchen-pages .week-ideas .idea-note,#kitchen-pages .week-ideas .inline-thought{margin:0 0 3px 33px;width:calc(100% - 33px);padding:0;line-height:1.5}
+#kitchen-pages .expense-date-picker{width:100%;justify-content:space-between;background:#fffdf9;border:1px solid #efdbd1}
+#kitchen-pages .expense-calendar{margin-top:10px;background:#f7fbff;border-radius:14px;padding:10px}
+#kitchen-pages .expense-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;text-align:center}
+#kitchen-pages .expense-days button{position:relative;min-height:40px;padding:5px 0 11px;background:transparent;display:flex;flex-direction:column;border-radius:8px}
+#kitchen-pages .expense-days button[aria-pressed=true]{background:#ffdfd3}
+#kitchen-pages .day-label{font-size:12px;padding:6px 0}
+#kitchen-pages .spending-dot{position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:#bb3345}
+`;
+
 route='week';
 
 render();
 })();
 </script>
 </div>
+
 
 
 
