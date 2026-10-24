@@ -328,14 +328,14 @@ function showWeek(){initWeek();const ideas=weekly.ideas.filter(x=>x.week===weekK
 <div class="week-date"><h2>This week</h2><button data-week-today>Today</button></div><div class="week-date"><button data-week-shift="-1" aria-label="Previous week">‹</button><span>${weekRange()}</span><button data-week-shift="1" aria-label="Next week">›</button></div>
 <section class="week-panel week-ideas"><div class="row"><h3>Meal ideas</h3><i data-lucide="sparkles" aria-hidden="true"></i></div>
 <form data-week-form="idea"><input name="idea" aria-label="Meal idea" placeholder="What sounds good?" required maxlength="500"><button aria-label="Add meal idea">＋</button></form>
-${ideas.length?ideas.map(x=>`<article class="week-entry idea-entry"><div class="idea-line"><button class="idea-circle" data-idea-made="${x.id}" aria-label="${x.made?'Undo made it':'Mark as made'}" aria-pressed="${!!x.made}" data-tooltip="${x.made?'Undo made it':'Made it'}"><i data-lucide="${x.made?'circle-check':'circle'}" aria-hidden="true"></i></button><button class="idea-title ${x.made?'week-done':''}" data-idea-title="${x.id}" aria-label="Edit meal idea: ${esc(x.text)}" data-tooltip="Edit meal idea">${esc(x.text)}</button><div class="week-actions"><button data-idea-note="${x.id}" aria-label="Edit thought" data-tooltip="Edit thought"><i data-lucide="notebook-pen" aria-hidden="true"></i></button><button data-idea-keep="${x.id}" aria-pressed="${!!x.keptId}" aria-label="${x.keptId?'Undo adding to next week':'Add to next week'}" data-tooltip="${x.keptId?'Added to next week · Tap to undo':'Add to next week'}"><i data-lucide="${x.keptId?'calendar-check':'calendar-arrow-up'}" aria-hidden="true"></i></button><button data-idea-delete="${x.id}" aria-label="Remove meal idea" data-tooltip="Remove idea"><i data-lucide="x" aria-hidden="true"></i></button></div></div>${x.note?'<p class="idea-note" data-note-display="'+x.id+'">'+esc(x.note)+'</p>':''}</article>`).join(''):'<small>A place for whatever you feel like cooking.</small>'}
-<details><summary>From my recipes</summary>${pages.map(p=>`<button data-week-recipe="${p.id}">${esc(p.title||'Untitled creation')} ＋</button>`).join('')}</details></section>
+${ideas.length?ideas.map(x=>`<article class="week-entry idea-entry" data-swipe-idea="${x.id}"><div class="idea-line"><button class="idea-circle" data-idea-made="${x.id}" aria-label="${x.made?'Undo made it':'Mark as made'}" aria-pressed="${!!x.made}" data-tooltip="${x.made?'Undo made it':'Made it'}"><i data-lucide="${x.made?'circle-check':'circle'}" aria-hidden="true"></i></button><button class="idea-title ${x.made?'week-done':''}" data-idea-title="${x.id}" aria-label="Edit meal idea: ${esc(x.text)}" data-tooltip="Edit meal idea">${esc(x.text)}</button><div class="week-actions"><button data-idea-note="${x.id}" aria-label="Edit thought" data-tooltip="Edit thought"><i data-lucide="notebook-pen" aria-hidden="true"></i></button><button data-idea-keep="${x.id}" aria-pressed="${!!x.keptId}" aria-label="${x.keptId?'Undo adding to next week':'Add to next week'}" data-tooltip="${x.keptId?'Added to next week · Tap to undo':'Add to next week'}"><i data-lucide="${x.keptId?'calendar-check':'calendar-arrow-up'}" aria-hidden="true"></i></button></div></div>${x.note?'<p class="idea-note" data-note-display="'+x.id+'">'+esc(x.note)+'</p>':''}</article>`).join(''):'<small>A place for whatever you feel like cooking.</small>'}
+<details><summary aria-label="Choose from my recipes" data-tooltip="From my recipes"><i data-lucide="book-open" aria-hidden="true"></i></summary>${pages.map(p=>`<button data-week-recipe="${p.id}">${esc(p.title||'Untitled creation')} ＋</button>`).join('')}</details></section>
 <section class="week-panel week-grocery"><div class="row"><h3>Grocery</h3><i data-lucide="shopping-basket" aria-hidden="true"></i></div><form data-week-form="grocery"><input name="grocery" aria-label="Grocery item" placeholder="Anything to pick up…" required maxlength="150"><button aria-label="Add grocery item">＋</button></form>
 ${weekly.groceries.map(g=>`<div class="week-entry row grocery-swipe" data-grocery-row="${g.id}"><label class="week-check"><input type="checkbox" data-grocery-check="${g.id}" ${g.done?'checked':''}><i data-lucide="${groceryIcon(g.name)}" aria-hidden="true"></i><span class="${g.done?'week-done':''}">${esc(g.name)}</span></label></div>`).join('')}
-<details><summary data-stamp-target aria-label="Weekly stamps: drop a grocery here to repeat weekly" data-tooltip="Drop here to repeat every week"><i data-lucide="stamp" aria-hidden="true"></i></summary>${weekly.staples.map((s,i)=>`<div class="row"><span>${esc(s)}</span><button data-staple-remove="${i}" aria-label="Remove weekly staple ${esc(s)}"><i data-lucide="minus" aria-hidden="true"></i></button></div>`).join('')}<form data-week-form="staple"><input name="staple" placeholder="Buy most weeks…" aria-label="New weekly staple" required maxlength="150"><button aria-label="Add weekly staple">＋</button></form></details></section>
+<details><summary data-stamp-target aria-label="Weekly stamps: drop a grocery here to repeat weekly" data-tooltip="Drop here to repeat every week"><i data-lucide="stamp" aria-hidden="true"></i></summary>${weekly.staples.map((s,i)=>`<div class="stamp-item" data-swipe-staple="${esc(s)}"><i data-lucide="${groceryIcon(s)}" aria-hidden="true"></i><span>${esc(s)}</span></div>`).join('')}<form data-week-form="staple"><input name="staple" placeholder="Buy most weeks…" aria-label="New weekly staple" required maxlength="150"><button aria-label="Add weekly staple">＋</button></form></details></section>
 <section class="week-panel week-money"><div class="row"><h3>Spending</h3><output class="month-total" aria-label="Selected month total spending" aria-live="polite">${money(total)}</output></div><div class="spending-month-row"><input id="week-month" type="month" aria-label="Spending month" value="${spendMonth}"><select id="week-currency" aria-label="Currency"><option ${currency==='CHF'?'selected':''}>CHF</option><option ${currency==='EUR'?'selected':''}>EUR</option></select></div>
 <form data-week-form="expense"><input name="amount" inputmode="decimal" placeholder="0.00" aria-label="Shopping total" required><input name="date" type="date" aria-label="Shopping date" value="${dayKey(new Date())}" required><button aria-label="Save shopping total" data-tooltip="Save"><i data-lucide="check" aria-hidden="true"></i></button><span class="week-error" role="alert"></span></form>
-${expenses.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).map(x=>`<div class="week-entry row"><span>${dateAt(x.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><span>${money(x.cents)}</span><button data-expense-edit="${x.id}" aria-label="Edit shopping total"><i data-lucide="pencil" aria-hidden="true"></i></button><button data-expense-remove="${x.id}" aria-label="Remove shopping total">×</button></div>`).join('')}
+${expenses.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).map(x=>`<div class="week-entry expense-row" data-swipe-expense="${x.id}"><input class="expense-date" type="date" data-inline-expense-date="${x.id}" aria-label="Edit shopping date" value="${x.date}"><input class="expense-amount" inputmode="decimal" data-inline-expense="${x.id}" aria-label="Edit shopping amount" value="${(x.cents/100).toFixed(2)}"><span>${currency}</span></div>`).join('')}
 </section>`;icons();}
 const beforeWeekRender=render;
 render=function(){if(route!=='week'){beforeWeekRender();weekNav.removeAttribute('aria-current');return;}pageChildren.forEach(el=>el.hidden=true);back.hidden=true;organize.hidden=true;headerAction.hidden=true;collection.hidden=false;weekNav.setAttribute('aria-current','page');showWeek();icons();};
@@ -406,7 +406,7 @@ weekStyle.textContent+=`
 let removedGrocery=null;
 function removeGrocery(id){const index=weekly.groceries.findIndex(x=>x.id===id);if(index<0)return;removedGrocery={index,item:weekly.groceries[index]};weekly.groceries.splice(index,1);}
 function restoreGrocery(){if(!removedGrocery)return;weekly.groceries.splice(Math.min(removedGrocery.index,weekly.groceries.length),0,removedGrocery.item);removedGrocery=null;}
-function showGroceryUndo(){if(!removedGrocery)return;const b=document.createElement('button');b.dataset.groceryUndo='true';b.setAttribute('aria-label','Undo removing grocery');b.dataset.tooltip='Undo remove';b.innerHTML='<i data-lucide="undo-2" aria-hidden="true"></i>';const panel=collection.querySelector('.week-grocery');panel.querySelector('[data-grocery-undo]')?.remove();panel.append(b);icons();}
+function showGroceryUndo(){}
 weekStyle.textContent+=`
 #kitchen-pages .week-grocery .week-entry,#kitchen-pages .week-grocery .week-check{min-height:32px;height:32px;margin:0;padding:0;gap:6px}
 #kitchen-pages .week-grocery .week-check{display:flex;align-items:center}
@@ -414,12 +414,36 @@ weekStyle.textContent+=`
 #kitchen-pages .week-ideas .inline-idea{flex:1;min-width:0;border:0;border-radius:0;background:transparent;padding:12px 3px;font:inherit}
 `;
 const compactWeek=showWeek;showWeek=function(){compactWeek();showGroceryUndo();};
+// Submit explicitly before legacy capture handlers can rebuild the form.
+document.addEventListener('click',e=>{const b=e.target.closest('#kitchen-pages form[data-week-form] button');if(!b)return;const f=b.closest('form');e.preventDefault();e.stopImmediatePropagation();f.requestSubmit();},true);
+function commitExpense(t){const id=Number(t.dataset.inlineExpense||t.dataset.inlineExpenseDate),x=weekly.expenses.find(x=>x.id===id);if(!x)return;if(t.dataset.inlineExpense){const value=t.value.trim().replace(',','.');if(!/^\d+(\.\d{1,2})?$/.test(value)||Number(value)<=0||!Number.isSafeInteger(Math.round(Number(value)*100))){t.setCustomValidity('Enter a positive amount with up to two decimals.');t.reportValidity();return;}t.setCustomValidity('');x.cents=Math.round(Number(value)*100);t.value=(x.cents/100).toFixed(2);}else if(t.value)x.date=t.value;const sum=weekly.expenses.filter(y=>y.date.slice(0,7)===spendMonth).reduce((a,y)=>a+y.cents,0);collection.querySelector('.month-total').textContent=money(sum);}
+root.addEventListener('focusout',e=>{if(e.target.matches('[data-inline-expense],[data-inline-expense-date]'))commitExpense(e.target);});
+root.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('[data-inline-expense]')){e.preventDefault();e.target.blur();}});
+root.addEventListener('pointerdown',e=>{const t=root.querySelector('[data-inline-expense]:focus');if(t&&t!==e.target)t.blur();},true);
+let simpleSwipe=null;
+root.addEventListener('pointerdown',e=>{const row=e.target.closest('[data-swipe-idea],[data-swipe-staple],[data-swipe-expense]');if(!row||e.button!==0||e.target.closest('button,input,textarea'))return;simpleSwipe={row,x:e.clientX,y:e.clientY,p:e.pointerId,dx:0};});
+root.addEventListener('pointermove',e=>{const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;if(Math.abs(dy)>15&&Math.abs(dy)>Math.abs(dx)){simpleSwipe=null;g.row.style.transform='';return;}if(dx>12&&dx>Math.abs(dy)*1.2){g.dx=dx;g.row.setPointerCapture(e.pointerId);g.row.style.transform='translateX('+Math.min(dx,130)+'px)';}});
+function endSimpleSwipe(e,cancel){const g=simpleSwipe;if(!g||g.p!==e.pointerId)return;simpleSwipe=null;g.row.style.transform='';if(cancel||g.dx<65)return;const d=g.row.dataset;if(d.swipeIdea){const id=Number(d.swipeIdea);weekly.ideas.splice(weekly.ideas.findIndex(x=>x.id===id),1);}if(d.swipeStaple)weekly.staples=weekly.staples.filter(x=>x!==d.swipeStaple);if(d.swipeExpense)weekly.expenses=weekly.expenses.filter(x=>x.id!==Number(d.swipeExpense));showWeek();}
+root.addEventListener('pointerup',e=>endSimpleSwipe(e,false));root.addEventListener('pointercancel',e=>endSimpleSwipe(e,true));
+weekStyle.textContent+=`
+#kitchen-pages .week-ideas summary{list-style:none;display:flex;width:44px;min-height:44px;box-sizing:border-box;align-items:center;padding:10px}
+#kitchen-pages .week-ideas summary::-webkit-details-marker{display:none}
+#kitchen-pages .stamp-item{display:flex;align-items:center;gap:8px;min-height:32px;touch-action:pan-y;user-select:none}
+#kitchen-pages .stamp-item svg{width:15px;height:15px}
+#kitchen-pages .idea-entry,#kitchen-pages .expense-row{touch-action:pan-y}
+#kitchen-pages .expense-row{display:flex;align-items:center;gap:8px}
+#kitchen-pages .expense-row input{background:transparent;border:0;border-radius:0;padding:8px 0;font:inherit;min-width:0}
+#kitchen-pages .expense-row .expense-date{flex:1;width:125px}
+#kitchen-pages .expense-row .expense-amount{width:76px;text-align:right;flex:none}
+`;
+
 route='week';
 
 render();
 })();
 </script>
 </div>
+
 
 
 
